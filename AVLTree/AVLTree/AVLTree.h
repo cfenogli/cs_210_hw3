@@ -14,7 +14,7 @@ public:
 	AVLNode(const T& theElement, AVLNode* lt, AVLNode* rt, int h = 1) :
 		element(theElement), left(lt), right(rt), height(h) {}
 
-	void calculateBalanceFactor();
+	int calculateBalanceFactor();
 
 	friend class AVLTree<T>;
 };
@@ -30,7 +30,7 @@ public:
 	const T& search(const T& x) const;
 	void showAvlST() const;
 	void showBF() const;
-	void insertElement(const T& x);
+	AVLNode<T>* insertElement(AVLNode<T>* node, const T& x);
 
 	void LLRotateWithLeftChild(AVLNode<T>*& t) const;
 	void RRRotateWithRightChild(AVLNode<T>*& t) const;

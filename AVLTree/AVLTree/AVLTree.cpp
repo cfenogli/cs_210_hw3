@@ -125,58 +125,60 @@ void AVLTree<T>::showBFHelper(AVLNode<T>* p, int level) const
 }
 
 template<class T>
-void AVLTree<T>::insertElement(const T& x)
+AVLNode<T>* AVLTree<T>::insertElement(AVLNode<T>* node, const T& x)
 {
-	AVLNode<T>* currentNode = root;
-
-	//if tree is empty
-	if (currentNode == 0)
+	if (node == NULL)
 	{
 		AVLNode<T> tempNode = AVLNode<T>(x, NULL, NULL, 0);
 		root = tempNode;
+		return root;
 	}
+	else if (x < node->element)
+	{
+		node->left = insert(node->left, x);
+	}
+	else if (x > node->element)
+	{
+		node->right = insert(node->right, x)
+	}
+	//duplicate key; do not insert it
 	else
 	{
-		bool greater;
-		while ((!greater && currentNode->left) || (greater && currentNode->right))
-		{
-			if (x > currentNode->element)
-			{
-				greater = true;
-				currentNode = currentNode->right;
-			}
-			else
-			{
-				greater = false;
-				currentNode = currentNode->left;
-			}
-		}
+		return node;
+	}
 
-		AVLNode<T> tempNode = AVLNode<T>(x, NULL, NULL, 0);
-		if (greater)
-		{
-			currentNode->right = tempNode;
-		}
-		else
-		{
-			currentNode->left = tempNode;
-		}
-		tempNode->balanceFactor = 0;
+	//update node height
+	node->height = max(node->left->height, node->right->height);
 
-		//adjust height according to which children the current node has
-		if (currentNode->left && !currentNode->right)
+	int currentBalance = node->calculateBalanceFactor();
+
+	if (currentBalance > 1)
+	{
+		//LL
+		if (x < node->left->element)
 		{
-			currentNode->height = currentNode->left->height + 1;
+			LLRotateWithLeftChild(node);
 		}
-		else if (currentNode->right && !currentNode->left)
+		//LR
+		else if (x > node->left->element)
 		{
-			currentNode->height = currentNode->right->height + 1;
-		}
-		else
-		{
-			currentNode->height = max(currentNode->left->height, currentNode->right->height) + 1;
+			LRDoubleWithLeftChild(node);
 		}
 	}
+	else if (currentBalance < -1)
+	{
+		//RR
+		if (x > node->right->element)
+		{
+			RRRotateWithRightChild(node);
+		}
+		//RL
+		else if (x < node->right->element)
+		{
+			RLDoubleWithRightChild(node);
+		}
+	}
+	return node;
 }
 
 template<class T>
@@ -228,7 +230,7 @@ void AVLTree<T>::RLDoubleWithRightChild(AVLNode<T>*& t) const
 }
 
 template<class T>
-void AVLNode<T>::calculateBalanceFactor()
+int AVLNode<T>::calculateBalanceFactor()
 {
 	int leftHeight = 0;
 	int rightHeight = 0;
@@ -241,4 +243,5 @@ void AVLNode<T>::calculateBalanceFactor()
 		rightHeight = right->height;
 	}
 	balanceFactor = leftHeight - rightHeight;
+	return balanceFactor;
 }
