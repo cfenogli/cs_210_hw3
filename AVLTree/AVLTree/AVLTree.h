@@ -1,3 +1,4 @@
+#pragma once //not in original file?
 template<class T>
 class AVLTree;
 
@@ -9,7 +10,7 @@ public:
 	AVLNode* left;
 	AVLNode* right;
 	int height;
-	int balanceFactor;
+	int balanceFactor = 100; //initialized balanceFactor with something unlikely to get past an error
 
 	AVLNode(const T& theElement, AVLNode* lt, AVLNode* rt, int h = 1) :
 		element(theElement), left(lt), right(rt), height(h) {}
@@ -37,6 +38,8 @@ public:
 
 	void LRDoubleWithLeftChild(AVLNode<T>*& t) const;
 	void RLDoubleWithRightChild(AVLNode<T>*& t) const;
+
+	AVLNode<T>* getRoot() const;
 
 private:
 	AVLNode<T>* root;

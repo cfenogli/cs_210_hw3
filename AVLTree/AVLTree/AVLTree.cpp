@@ -66,7 +66,7 @@ void AVLTree<T>::showAvlSTHelper(AVLNode<T>* p, int level) const
 	{
 		//output right subtree
 		showAvlSTHelper(p->right, level + 1);
-		for (j = 0; j < level; j++) cout << "\t";
+		for (int j = 0; j < level; j++) cout << "\t"; //set j to int
 		//output key
 		cout << " " << p->element;
 		//two children
@@ -109,7 +109,7 @@ void AVLTree<T>::showBFHelper(AVLNode<T>* p, int level) const
 	{
 		//output right subtree
 		showBFHelper(p->right, level + 1);
-		for (j = 0; j < level; j++) cout << "\t";
+		for (int j = 0; j < level; j++) cout << "\t"; //set j to int
 		//output balance factor
 		cout << " " << p->balanceFactor;
 		//two children
@@ -139,7 +139,7 @@ AVLNode<T>* AVLTree<T>::insertElement(AVLNode<T>* node, const T& x)
 	}
 	else if (x > node->element)
 	{
-		node->right = insert(node->right, x)
+		node->right = insert(node->right, x);
 	}
 	//duplicate key; do not insert it
 	else
@@ -227,6 +227,12 @@ void AVLTree<T>::RLDoubleWithRightChild(AVLNode<T>*& t) const
 
 	//single rotate to left
 	RRRotateWithRightChild(t);
+}
+
+template<class T>
+AVLNode<T>* AVLTree<T>::getRoot() const //added function to access the root
+{
+	return root;
 }
 
 template<class T>
