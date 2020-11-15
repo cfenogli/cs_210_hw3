@@ -17,6 +17,7 @@ AVLTree<T>::~AVLTree()
 	delete root;
 }
 
+//return the target element if found; return NULL if not found
 template<class T>
 const T& AVLTree<T>::search(const T& x) const
 {
@@ -125,6 +126,7 @@ void AVLTree<T>::showBFHelper(AVLNode<T>* p, int level) const
 	}
 }
 
+//insert the element x into the AVL Tree
 template<class T>
 void AVLTree<T>::insertElement(const T& x)
 {
@@ -263,6 +265,7 @@ void AVLTree<T>::setRoot(AVLNode<T>* newRoot)
 	root = newRoot;
 }
 
+//calculate the balance factor for this node, based on its children's heights
 template<class T>
 int AVLNode<T>::calculateBalanceFactor()
 {
@@ -280,6 +283,7 @@ int AVLNode<T>::calculateBalanceFactor()
 	return balanceFactor;
 }
 
+//getter for height; returns 0 for a null node
 template<class T>
 int AVLNode<T>::getHeight() const
 {
