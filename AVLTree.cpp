@@ -125,26 +125,39 @@ void AVLTree<T>::showBFHelper(AVLNode<T>* p, int level) const
 	}
 }
 
-//return root node
 template<class T>
-AVLNode<T>* AVLTree<T>::insertElement(AVLNode<T>* node, const T& x)
+void AVLTree<T>::insertElement(const T& x)
+{
+	if (getRoot() == NULL)
+	{
+		AVLNode<T>* newNode = new AVLNode<T>(x);
+		setRoot(newNode);
+		getRoot()->balanceFactor = getRoot()->calculateBalanceFactor();
+	}
+	else
+	{
+		root = insert(getRoot(), x);
+	}
+}
+
+//return root node
+//helper function for insertElement
+template<class T>
+AVLNode<T>* AVLTree<T>::insert(AVLNode<T>* node, const T& x)
 {
 	if (node == NULL)
 	{
-		AVLNode<T>* newNode = new AVLNode<T>(x, NULL, NULL, 0);
-		setRoot(newNode);
-		getRoot()->balanceFactor = getRoot()->calculateBalanceFactor();
-		return getRoot();
+		return new AVLNode<T>(x);
 	}
 	else
 	{
 		if (x < node->element)
 		{
-			node->left = insertElement(node->left, x);
+			node->left = insert(node->left, x);
 		}
 		else if (x > node->element)
 		{
-			node->right = insertElement(node->right, x);
+			node->right = insert(node->right, x);
 		}
 		//duplicate key; do not insert it
 		else
@@ -153,11 +166,10 @@ AVLNode<T>* AVLTree<T>::insertElement(AVLNode<T>* node, const T& x)
 		}
 
 		//update node height
-		node->height = max(node->left->height, node->right->height);
+		node->setHeight(max(node->left->getHeight(), node->right->getHeight()) + 1);
+		node->balanceFactor = node->calculateBalanceFactor();
 
-		int currentBalance = node->calculateBalanceFactor();
-
-		if (currentBalance > 1)
+		if (node->balanceFactor > 1)
 		{
 			//LL
 			if (x < node->left->element)
@@ -170,7 +182,7 @@ AVLNode<T>* AVLTree<T>::insertElement(AVLNode<T>* node, const T& x)
 				LRDoubleWithLeftChild(node);
 			}
 		}
-		else if (currentBalance < -1)
+		else if (node->balanceFactor < -1)
 		{
 			//RR
 			if (x > node->right->element)
@@ -194,9 +206,11 @@ void AVLTree<T>::LLRotateWithLeftChild(AVLNode<T>*& t) const
 	//single rotate to right
 	t->left = t1->right;
 	t1->right = t;
-	//update height
-	t->height = max(t->left->height, t->right->height) + 1;
-	t1->height = max(t1->left->height, t1->right->height) + 1;
+	//update height and BF
+	t->setHeight(max(t->left->getHeight(), t->right->getHeight()) + 1);
+	t1->setHeight(max(t1->left->getHeight(), t1->right->getHeight()) + 1);
+	t->balanceFactor = t->calculateBalanceFactor();
+	t1->balanceFactor = t1->calculateBalanceFactor();
 	//set new root
 	t = t1;
 }
@@ -208,9 +222,11 @@ void AVLTree<T>::RRRotateWithRightChild(AVLNode<T>*& t) const
 	//single rotate to left
 	t->right = t1->left;
 	t1->left = t;
-	//update height
-	t->height = max(t->left->height, t->right->height) + 1;
-	t1->height = max(t1->left->height, t1->right->height) + 1;
+	//update height and BF
+	t->setHeight(max(t->left->getHeight(), t->right->getHeight()) + 1);
+	t1->setHeight(max(t1->left->getHeight(), t1->right->getHeight()) + 1);
+	t->balanceFactor = t->calculateBalanceFactor();
+	t1->balanceFactor = t1->calculateBalanceFactor();
 	//set new root
 	t = t1;
 }
@@ -254,12 +270,31 @@ int AVLNode<T>::calculateBalanceFactor()
 	int rightHeight = 0;
 	if (left)
 	{
-		leftHeight = left->height;
+		leftHeight = left->getHeight();
 	}
 	if (right)
 	{
-		rightHeight = right->height;
+		rightHeight = right->getHeight();
 	}
 	balanceFactor = leftHeight - rightHeight;
 	return balanceFactor;
+}
+
+template<class T>
+int AVLNode<T>::getHeight() const
+{
+	if (this == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return height;
+	}
+}
+
+template<class T>
+void AVLNode<T>::setHeight(int newHeight)
+{
+	height = newHeight;
 }

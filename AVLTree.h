@@ -8,17 +8,22 @@ class AVLNode
 {
 public:
 	T element;
-	AVLNode* left;
-	AVLNode* right;
-	int height;
-	int balanceFactor = 100; //initialized balanceFactor with something unlikely to get past an error
+	AVLNode* left = 0;
+	AVLNode* right = 0;
+	int balanceFactor = 0;
 
-	AVLNode(const T theElement, AVLNode* lt, AVLNode* rt, int h = 1) :
-		element(theElement), left(lt), right(rt), height(h) {}
+	int getHeight() const;
+	void setHeight(int newHeight);
+
+	AVLNode(const T theElement, int h = 1) :
+		element(theElement), height(h) {}
 
 	int calculateBalanceFactor();
 
 	friend class AVLTree<T>;
+
+private:
+	int height;
 };
 
 
@@ -32,7 +37,8 @@ public:
 	const T& search(const T& x) const;
 	void showAvlST() const;
 	void showBF() const;
-	AVLNode<T>* insertElement(AVLNode<T>* node, const T& x);
+	void insertElement(const T& x);
+	AVLNode<T>* insert(AVLNode<T>* root, const T& x);
 
 	void LLRotateWithLeftChild(AVLNode<T>*& t) const;
 	void RRRotateWithRightChild(AVLNode<T>*& t) const;
