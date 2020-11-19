@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//select new partition for quickSelect
 template<typename T>
 void partition(vector<T>& thisVector, int low, int high, int& pivot)
 {
@@ -27,6 +28,8 @@ void partition(vector<T>& thisVector, int low, int high, int& pivot)
 	thisVector[low] = tempKey;
 }
 
+//main quickSelect algorithm
+//returns k-th smallest element (between low and high) of type T
 template<typename T>
 T quickSelect(vector<T> thisVector, int low, int high, int k)
 {
@@ -54,6 +57,8 @@ T quickSelect(vector<T> thisVector, int low, int high, int k)
 	}
 }
 
+//call quickSelect with k adjusted for readability
+//in the main function, k = 0 is treated as the smallest
 template<typename T>
 T quickSelectHelper(vector<T> thisVector, int low, int high, int k)
 {
