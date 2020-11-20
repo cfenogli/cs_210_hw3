@@ -31,20 +31,20 @@ void partition(vector<T>& thisVector, int low, int high, int& pivot)
 //main quickSelect algorithm
 //returns k-th smallest element (between low and high) of type T
 template<typename T>
-T quickSelect(vector<T> thisVector, int low, int high, int k)
+int quickSelect(vector<T> thisVector, int low, int high, int k)
 {
 	int pivot;
 
 	if (low == high)
 	{
-		return thisVector[low];
+		return low;
 	}
 	else
 	{
 		partition(thisVector, low, high, pivot);
 		if (k == pivot)
 		{
-			return thisVector[pivot];
+			return pivot;
 		}
 		else if (k < pivot)
 		{
@@ -60,7 +60,7 @@ T quickSelect(vector<T> thisVector, int low, int high, int k)
 //call quickSelect with k adjusted for readability
 //in the main function, k = 0 is treated as the smallest
 template<typename T>
-T quickSelectHelper(vector<T> thisVector, int low, int high, int k)
+int quickSelectHelper(vector<T> thisVector, int low, int high, int k)
 {
 	return quickSelect(thisVector, low, high, k - 1);
 }

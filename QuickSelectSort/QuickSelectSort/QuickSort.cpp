@@ -1,3 +1,5 @@
+#include "QuickSelect.cpp"
+
 #include <vector>
 #include <iostream>
 
@@ -17,7 +19,7 @@ void printVectorMidway(vector<T> vectorToPrint)
 template<typename T>
 int partitionMedian(vector<T>& thisVector, int low, int high)
 {
-	int medianIndex = (high + low) / 2;
+	int medianIndex = quickSelect(thisVector, low, high, (high+low)/2);
 	T pivotItem = thisVector[medianIndex];
 
 	T tempKey = thisVector[medianIndex];
@@ -55,18 +57,17 @@ int partitionMedian(vector<T>& thisVector, int low, int high)
 template<typename T>
 void quickSort(vector<T>& thisVector, int low, int high)
 {
-	int pivot;
+	int pivot = 0;
 
 	if (high > low)
 	{
-
 		pivot = partitionMedian(thisVector, low, high);
 
-		/*
+		
 		//debugging
 		cout << "\npivot: " << pivot << " - high index: " << high << " - low index: " << low << " - vector to be sorted:\n";
 		printVectorMidway(thisVector);
-		*/
+		
 
 		quickSort(thisVector, low, pivot - 1);
 		quickSort(thisVector, pivot + 1, high);

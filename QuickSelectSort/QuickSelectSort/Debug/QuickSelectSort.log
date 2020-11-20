@@ -1,9 +1,9 @@
 ﻿  Driver.cpp
-C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(78,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(21): message : see reference to function template instantiation 'void printVector<int>(std::vector<int,std::allocator<int>>)' being compiled
-C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\QuickSort.cpp(9,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\QuickSort.cpp(62): message : see reference to function template instantiation 'void printVectorMidway<int>(std::vector<int,std::allocator<int>>)' being compiled
-C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(70): message : see reference to function template instantiation 'void quickSort<int>(std::vector<int,std::allocator<int>> &,int,int)' being compiled
+C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(77,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(20): message : see reference to function template instantiation 'void printVector<int>(std::vector<int,std::allocator<int>>)' being compiled
+C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\QuickSort.cpp(11,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\QuickSort.cpp(69): message : see reference to function template instantiation 'void printVectorMidway<int>(std::vector<int,std::allocator<int>>)' being compiled
+C:\Users\Paris\Desktop\Academic\CS210\Homework 3\Programming\Homework_3\QuickSelectSort\QuickSelectSort\Driver.cpp(69): message : see reference to function template instantiation 'void quickSort<int>(std::vector<int,std::allocator<int>> &,int,int)' being compiled
   QuickSelect.cpp
   QuickSort.cpp
   Generating Code...
