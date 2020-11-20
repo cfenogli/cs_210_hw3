@@ -1,4 +1,5 @@
 #include "QuickSelect.cpp"
+#include "QuickSort.cpp"
 
 #include <iostream>
 #include <string>
@@ -11,6 +12,7 @@ void printVector(vector<T> vectorToPrint);
 
 int main()
 {
+	cout << "----------------------------------\nQuickSelect Tests:\n----------------------------------" << endl;
 	cout << "Provided test cases:" << endl << "-------------------------" << endl;
 
 	vector<int> vector1{ 2, 3, 5, 8, 12, 1, 7, 10, 13, 30, 6, 14, 15, 18, 22 };
@@ -57,6 +59,16 @@ int main()
 	cout << "k = 3:" << endl;
 	cout << quickSelectHelper(vector3, 0, vector3.size() - 1, 3) << endl;
 
+
+	cout << "----------------------------------\nQuickSort Tests:\n----------------------------------" << endl;
+	cout << "Provided test cases:" << endl << "-------------------------" << endl;
+
+	vector<int> vector4{ 2, 3, 5, 8, 12, 1, 7, 10, 13, 30, 6, 14, 15, 18, 22 };
+	cout << "Test case 1:" << endl;
+	printVector(vector4);
+	cout << "After sort:" << endl;
+	quickSort(vector4, 0, vector4.size() - 1);
+	printVector(vector4);
 }
 
 //print contents of vector vectorToPrint

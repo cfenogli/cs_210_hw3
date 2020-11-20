@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="QuickSelect.cpp" />
+    <ClCompile Include="QuickSort.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
