@@ -59,8 +59,14 @@ void quickSort(vector<T>& thisVector, int low, int high)
 
 	if (high > low)
 	{
-		printVectorMidway(thisVector);
+
 		pivot = partitionMedian(thisVector, low, high);
+
+		/*
+		//debugging
+		cout << "\npivot: " << pivot << " - high index: " << high << " - low index: " << low << " - vector to be sorted:\n";
+		printVectorMidway(thisVector);
+		*/
 
 		quickSort(thisVector, low, pivot - 1);
 		quickSort(thisVector, pivot + 1, high);
