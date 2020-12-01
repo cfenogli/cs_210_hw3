@@ -59,15 +59,23 @@ int main()
 	cout << vector3[quickSelectHelper(vector3, 0, vector3.size() - 1, 3)] << endl;
 
 
-	cout << "----------------------------------\nQuickSort Tests:\n----------------------------------" << endl;
-	cout << "Provided test cases:" << endl << "-------------------------" << endl;
+	cout << "\n\n----------------------------------\nQuickSort Tests:\n----------------------------------" << endl;
+	cout << "Provided test case:" << endl << "-------------------------" << endl;
 
 	vector<int> vector4{ 2, 3, 5, 8, 12, 1, 7, 10, 13, 30, 6, 14, 15, 18, 22 };
-	cout << "Test case 1:" << endl;
+	cout << "\nTest case 1:" << endl;
 	printVector(vector4);
 	cout << "After sort:" << endl;
 	quickSort(vector4, 0, vector4.size() - 1);
 	printVector(vector4);
+
+	cout << "\n\nOur test case:" << endl << "-------------------------" << endl;
+	vector<int> vector5{ 50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50 };
+	cout << "\nTest case 2:" << endl;
+	printVector(vector5);
+	cout << "After sort:" << endl;
+	quickSort(vector5, 0, vector5.size() - 1);
+	printVector(vector5);
 }
 
 //print contents of vector vectorToPrint

@@ -15,6 +15,8 @@ void printVectorMidway(vector<T> vectorToPrint)
 	cout << endl;
 }
 
+//unused in final version
+/*
 //select new partition for quickSort
 template<typename T>
 int partitionMedian(vector<T>& thisVector, int low, int high)
@@ -53,6 +55,7 @@ int partitionMedian(vector<T>& thisVector, int low, int high)
 
 	return right;
 }
+*/
 
 template<typename T>
 void quickSort(vector<T>& thisVector, int low, int high)
@@ -61,12 +64,12 @@ void quickSort(vector<T>& thisVector, int low, int high)
 
 	if (high > low)
 	{
-		pivot = partitionMedian(thisVector, low, high);
+		partition(thisVector, low, high, pivot);
 
 		
 		//debugging
-		cout << "\npivot: " << pivot << " - high index: " << high << " - low index: " << low << " - vector to be sorted:\n";
-		printVectorMidway(thisVector);
+		//cout << "\npivot: " << pivot << " - high index: " << high << " - low index: " << low << " - vector to be sorted:\n";
+		//printVectorMidway(thisVector);
 		
 
 		quickSort(thisVector, low, pivot - 1);
