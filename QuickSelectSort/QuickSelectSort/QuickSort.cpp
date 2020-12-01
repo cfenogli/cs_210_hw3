@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//debug function used to print vector during sorting
 template<typename T>
 void printVectorMidway(vector<T> vectorToPrint)
 {
@@ -57,6 +58,7 @@ int partitionMedian(vector<T>& thisVector, int low, int high)
 }
 */
 
+//sort thisVector in ascending order from index low to index high
 template<typename T>
 void quickSort(vector<T>& thisVector, int low, int high)
 {
